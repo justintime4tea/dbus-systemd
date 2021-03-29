@@ -1,0 +1,28 @@
+[package]
+name = "dbus-systemd"
+version = "0.0.1"
+authors = ["Justin Gross <justin@jgross.tech>"]
+edition = "2018"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+anyhow = "1.0"
+async-trait = "0.1.42"
+dbus = "0.9.2"
+dbus-tree = "0.9.0"
+dbus-tokio = "0.7.3"
+deadpool = "0.7.0"
+futures = { version = "0.3", default-features = false }
+strum = { version = "0.20.0", features = ["derive"] }
+strum_macros = "0.20.0"
+systemd = "0.8.2"
+tokio = { version = "1", features = ["full", "rt-multi-thread"] }
+tracing = "0.1.22"
+tracing-subscriber = "0.2"
+tracing-futures = "0.2.5"
+
+[dev-dependencies.cargo-husky]
+version = "1"
+default-features = false
+features = ["precommit-hook", "run-cargo-test", "run-cargo-clippy"]
