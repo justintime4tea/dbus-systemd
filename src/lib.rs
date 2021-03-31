@@ -8,6 +8,8 @@
 mod dbus;
 mod systemd;
 
+pub use crate::systemd::*;
+
 #[cfg(test)]
 mod tests {
     use tracing::{error, warn};
