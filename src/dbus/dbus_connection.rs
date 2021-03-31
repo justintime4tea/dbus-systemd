@@ -2,7 +2,7 @@ use dbus::{arg, nonblock::SyncConnection};
 use dbus_tokio::connection::new_system_sync;
 use futures::future::{abortable, AbortHandle};
 use std::{ops::Deref, sync::Arc};
-use tracing::debug;
+use tracing::{debug, info};
 
 #[derive(Clone)]
 pub struct DBusConnection {
@@ -39,6 +39,7 @@ impl DBusConnection {
 
 impl Drop for DBusConnection {
     fn drop(&mut self) {
+        info!("dropping")
         // QUESTION: When to abort?
         // ? If we abort on drop than the connection can't be used in the future (from pool)
         // ? Abort should happen on "graceful shutdown" but how ?

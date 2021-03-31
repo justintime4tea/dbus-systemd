@@ -19,7 +19,7 @@ impl std::fmt::Debug for SystemdManager {
 impl SystemdManager {
     pub fn default() -> Self {
         Self {
-            connection_pool: DBusConnectionPool::new(DbusConnectionManager, 16),
+            connection_pool: DBusConnectionPool::new(DbusConnectionManager, 5),
         }
     }
 }

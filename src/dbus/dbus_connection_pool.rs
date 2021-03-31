@@ -34,7 +34,12 @@ impl ConnectionManager<DBusConnection, anyhow::Error> for DbusConnectionManager 
 
     // This is called when the pool is about to recycle a connection; a return of Ok(()) means its ok to recycle.
     async fn recycle(&self, conn: &mut DBusConnection) -> RecycleResult<anyhow::Error> {
-        let proxy = DBusProxy::new("org.freedesktop.DBus", "/org/freedesktop/DBus", Duration::from_secs(1), conn.clone());
+        let proxy = DBusProxy::new(
+            "org.freedesktop.systemd1",
+            "/org/freedesktop/systemd1",
+            Duration::from_secs(1),
+            conn.clone(),
+        );
 
         proxy
             .method_call("org.freedesktop.DBus.Peer", "Ping", ())

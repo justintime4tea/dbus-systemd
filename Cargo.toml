@@ -1,6 +1,6 @@
 [package]
 name = "dbus-systemd"
-version = "0.0.2"
+version = "0.0.3"
 authors = ["Justin Gross <justin@jgross.tech>"]
 edition = "2018"
 
