@@ -1,6 +1,6 @@
 use dbus::arg;
 
-use super::{Mode, UnitStatusDTO};
+use super::{Mode, UnitStatusDto};
 
 #[async_trait::async_trait]
 pub trait Systemd1Manager {
@@ -48,8 +48,8 @@ pub trait Systemd1Manager {
     async fn cancel_job(&self, id: u32) -> Result<(), dbus_tree::MethodErr>;
     async fn clear_jobs(&self) -> Result<(), dbus_tree::MethodErr>;
     async fn reset_failed(&self) -> Result<(), dbus_tree::MethodErr>;
-    async fn list_units(&self) -> Result<Vec<UnitStatusDTO>, dbus_tree::MethodErr>;
-    async fn list_units_filtered(&self, names: Vec<&str>) -> Result<Vec<UnitStatusDTO>, dbus_tree::MethodErr>;
+    async fn list_units(&self) -> Result<Vec<UnitStatusDto>, dbus_tree::MethodErr>;
+    async fn list_units_filtered(&self, names: Vec<&str>) -> Result<Vec<UnitStatusDto>, dbus_tree::MethodErr>;
     async fn list_jobs(
         &self,
     ) -> Result<Vec<(u32, String, String, String, dbus::Path<'static>, dbus::Path<'static>)>, dbus_tree::MethodErr>;

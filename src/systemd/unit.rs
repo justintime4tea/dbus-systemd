@@ -1,6 +1,6 @@
 use dbus::arg;
 
-pub type UnitStatusDTO = (
+pub type UnitStatusDto = (
     String,
     String,
     String,
@@ -27,8 +27,8 @@ pub struct SystemdUnitStatus {
     pub job_path: dbus::Path<'static>,
 }
 
-impl From<UnitStatusDTO> for SystemdUnitStatus {
-    fn from(u: UnitStatusDTO) -> Self {
+impl From<UnitStatusDto> for SystemdUnitStatus {
+    fn from(u: UnitStatusDto) -> Self {
         Self {
             name: u.0.clone(),
             description: u.1.clone(),

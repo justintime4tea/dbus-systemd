@@ -3,7 +3,7 @@ use strum::{AsRefStr, AsStaticStr, IntoStaticStr};
 
 use crate::dbus::{DBusConnectionPool, DbusConnectionManager};
 
-use super::{JobDTO, Mode, Systemd1Manager, UnitStatusDTO};
+use super::{JobDto, Mode, Systemd1Manager, UnitStatusDto};
 
 #[derive(Clone)]
 pub struct SystemdManager {
@@ -446,13 +446,13 @@ impl Systemd1Manager for SystemdManager {
         }
     }
 
-    async fn list_units(&self) -> Result<Vec<UnitStatusDTO>, dbus::MethodErr> {
+    async fn list_units(&self) -> Result<Vec<UnitStatusDto>, dbus::MethodErr> {
         match DbusConnectionManager::make_dbus_proxy(SYSTEMD.service.into(), SYSTEMD.path.into(), &self.connection_pool)
             .await
         {
             Ok(proxy) => match proxy.method_call(SYSTEMD.interface, "ListUnits", ()).await {
                 Ok((units,)) => {
-                    let units: Vec<UnitStatusDTO> = units;
+                    let units: Vec<UnitStatusDto> = units;
                     Ok(units)
                 }
                 Err(e) => Err(dbus::MethodErr::from(e)),
@@ -464,7 +464,7 @@ impl Systemd1Manager for SystemdManager {
         }
     }
 
-    async fn list_units_filtered(&self, names: Vec<&str>) -> Result<Vec<UnitStatusDTO>, dbus::MethodErr> {
+    async fn list_units_filtered(&self, names: Vec<&str>) -> Result<Vec<UnitStatusDto>, dbus::MethodErr> {
         match DbusConnectionManager::make_dbus_proxy(SYSTEMD.service.into(), SYSTEMD.path.into(), &self.connection_pool)
             .await
         {
@@ -473,7 +473,7 @@ impl Systemd1Manager for SystemdManager {
                 .await
             {
                 Ok((units,)) => {
-                    let units: Vec<UnitStatusDTO> = units;
+                    let units: Vec<UnitStatusDto> = units;
                     Ok(units)
                 }
                 Err(e) => Err(dbus::MethodErr::from(e)),
@@ -485,13 +485,13 @@ impl Systemd1Manager for SystemdManager {
         }
     }
 
-    async fn list_jobs(&self) -> Result<Vec<JobDTO>, dbus::MethodErr> {
+    async fn list_jobs(&self) -> Result<Vec<JobDto>, dbus::MethodErr> {
         match DbusConnectionManager::make_dbus_proxy(SYSTEMD.service.into(), SYSTEMD.path.into(), &self.connection_pool)
             .await
         {
             Ok(proxy) => match proxy.method_call(SYSTEMD.interface, "ListJobs", ()).await {
                 Ok((jobs,)) => {
-                    let jobs: Vec<JobDTO> = jobs;
+                    let jobs: Vec<JobDto> = jobs;
                     Ok(jobs)
                 }
                 Err(e) => Err(dbus::MethodErr::from(e)),

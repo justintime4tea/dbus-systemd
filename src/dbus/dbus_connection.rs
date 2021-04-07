@@ -39,7 +39,6 @@ impl DBusConnection {
 
 impl Drop for DBusConnection {
     fn drop(&mut self) {
-        info!("dropping")
         // QUESTION: When to abort?
         // ? If we abort on drop than the connection can't be used in the future (from pool)
         // ? Abort should happen on "graceful shutdown" but how ?

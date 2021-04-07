@@ -1,6 +1,6 @@
 use dbus::arg;
 
-pub type JobDTO = (u32, String, String, String, dbus::Path<'static>, dbus::Path<'static>);
+pub type JobDto = (u32, String, String, String, dbus::Path<'static>, dbus::Path<'static>);
 
 pub struct Job {
     job_id: u32,
@@ -11,8 +11,8 @@ pub struct Job {
     path: dbus::Path<'static>,
 }
 
-impl From<JobDTO> for Job {
-    fn from(j: JobDTO) -> Self {
+impl From<JobDto> for Job {
+    fn from(j: JobDto) -> Self {
         Self {
             job_id: j.0,
             name: j.1.clone(),
